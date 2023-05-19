@@ -26,7 +26,7 @@ app.get('/restaurants/:id', (req, res) => {
   console.log('req.params.id', req.params.id)
   const id = req.params.id
   const restaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === id)
-  res.render('show', {restaurant: restaurant})
+  res.render('show', {restaurant})
 })
 // Set up /search route
 app.get('/search', (req, res) => {
@@ -34,7 +34,7 @@ app.get('/search', (req, res) => {
   // Use trim() and regex to remove the spaces.
   const keyword = req.query.keyword.trim().replace(/\s/g, '')
   const restaurant = restaurantList.results.filter(restaurant => restaurant.name.toLowerCase().includes(keyword.toLowerCase()))
-  res.render('index', {restaurant: restaurant, keyword: keyword})
+  res.render('index', {restaurant, keyword})
 })
 
 // The server is listening and running at the http://localhost:3000
