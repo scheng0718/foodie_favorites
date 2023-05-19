@@ -14,9 +14,9 @@ This is a restaurant foodie favorite website built using Node.js and Express. It
 To run the project, make sure you have Node.js installed on your system. Then, follow these steps:
 
 1. Clone the repository: `git clone https://github.com/scheng0718/foodie_favorites.git`
-2. Navigate to the project directory: `cd foodie-favorites`
+2. Navigate to the project directory: `cd foodie_favorites`
 3. Install the dependencies: `npm install`
-4. Start the server: `npm run dev`
+4. Start the server: `npm run start`
 5. Open your web browser and visit: `http://localhost:3000`
 
 ## Developer
