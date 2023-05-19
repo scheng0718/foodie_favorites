@@ -4,10 +4,17 @@ const express = require('express')
 const app = express()
 // Define server-related variables
 const port = 3000
+// Load express-handlebars
+const exphbs = require('express-handlebars')
+
+// Use template engine
+app.engine('handlebars', exphbs({defaultLayout: 'main'}))
+// Set view engine as handlebars
+app.set('view engine', 'handlebars')
 
 // Set up the route and response body 
 app.get('/', (req, res) => {
-  res.send('This is the first server running by Express!')
+  res.render('index')
 })
 
 // The server is listening and running at the http://localhost:3000
