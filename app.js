@@ -28,6 +28,13 @@ app.get('/restaurants/:id', (req, res) => {
   const restaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === id)
   res.render('show', {restaurant: restaurant})
 })
+// Set up /search route
+app.get('/search', (req, res) => {
+  console.log('req.query.keyword', req.query.keyword)
+  const keyword = req.query.keyword
+  const restaurant = restaurantList.results.filter(restaurant => restaurant.name.toLowerCase().includes(keyword.toLowerCase()))
+  res.render('index', {restaurant: restaurant, keyword: keyword})
+})
 
 // The server is listening and running at the http://localhost:3000
 app.listen(port, () => {
