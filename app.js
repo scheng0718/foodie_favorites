@@ -20,11 +20,11 @@ app.use(express.static('public'))
 app.get('/', (req, res) => {
   res.render('index', {restaurant: restaurantList.results})
 })
-// Set up /restaurants/1 and response body
-// Params
+// Set up /restaurants/params and response body
 app.get('/restaurants/:id', (req, res) => {
-  console.log('req.params.id', req.params.id)
-  const id = req.params.id
+  // console.log('req.params.id', req.params.id)
+  // 使用到解構賦值的寫法，從 req.params 中提取名為 id的屬性再賦值
+  const {id} = req.params
   const restaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === id)
   res.render('show', {restaurant})
 })
