@@ -30,8 +30,9 @@ app.get('/restaurants/:id', (req, res) => {
 })
 // Set up /search route
 app.get('/search', (req, res) => {
-  console.log('req.query.keyword', req.query.keyword)
-  const keyword = req.query.keyword
+  // console.log('req.query.keyword', req.query.keyword)
+  // Use trim() and regex to remove the spaces.
+  const keyword = req.query.keyword.trim().replace(/\s/g, '')
   const restaurant = restaurantList.results.filter(restaurant => restaurant.name.toLowerCase().includes(keyword.toLowerCase()))
   res.render('index', {restaurant: restaurant, keyword: keyword})
 })
