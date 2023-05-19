@@ -11,6 +11,8 @@ const exphbs = require('express-handlebars')
 app.engine('handlebars', exphbs({defaultLayout: 'main'}))
 // Set view engine as handlebars
 app.set('view engine', 'handlebars')
+// Use static file
+app.use(express.static('public'))
 
 // Set up the route and response body 
 app.get('/', (req, res) => {
