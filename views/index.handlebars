@@ -20,6 +20,7 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col-md-10 col-12 mx-auto">
+      {{#if restaurant}}
       <div class="row row-cols-sm-3">
         {{#each restaurant}}
           <a href="/restaurants/{{this.id}}" class="text-secondary">
@@ -42,6 +43,9 @@
           </a>
         {{/each}}
       </div>
+      {{else}}
+        <h1> The restaurant is not in the list. Try to find another one! </h1>
+      {{/if}} 
     </div>
   </div>
 </div>
