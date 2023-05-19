@@ -30,6 +30,9 @@ app.get('/restaurants/:id', (req, res) => {
 })
 // Set up /search route
 app.get('/search', (req, res) => {
+  if (!req.query.keywords) {
+    return res.redirect('/')
+  }
   // console.log('req.query.keyword', req.query.keyword)
   // Use trim() and regex to remove the spaces.
   const keyword = req.query.keyword.trim().replace(/\s/g, '')
