@@ -6,6 +6,8 @@ const app = express()
 const port = 3000
 // Load express-handlebars
 const exphbs = require('express-handlebars')
+// Load JSON file
+const restaurantList = require('./restaurant.json')
 
 // Use template engine
 app.engine('handlebars', exphbs({defaultLayout: 'main'}))
@@ -16,7 +18,15 @@ app.use(express.static('public'))
 
 // Set up the route and response body 
 app.get('/', (req, res) => {
-  res.render('index')
+  res.render('index', {restaurant: restaurantList.results})
+})
+// Set up /restaurants/1 and response body
+// Params
+app.get('/restaurants/:id', (req, res) => {
+  console.log('req.params.id', req.params.id)
+  const id = req.params.id
+  const restaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === id)
+  res.render('show', {restaurant: restaurant})
 })
 
 // The server is listening and running at the http://localhost:3000
