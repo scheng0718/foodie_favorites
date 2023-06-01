@@ -26,9 +26,9 @@ db.once('open', () => {
   console.log('mongodb connected!')
 })
 // Use template engine
-app.engine('handlebars', exphbs({defaultLayout: 'main'}))
+app.engine('hbs', exphbs({defaultLayout: 'main', extname: '.hbs'}))
 // Set view engine as handlebars
-app.set('view engine', 'handlebars')
+app.set('view engine', 'hbs')
 // Use static file
 app.use(express.static('public'))
 
