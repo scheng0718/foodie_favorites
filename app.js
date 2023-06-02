@@ -15,6 +15,8 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
 const exphbs = require('express-handlebars')
 // Load JSON file
 const restaurantList = require('./restaurant.json')
+// Load Restaurant model
+const Restaurant = require('./models/restaurant')
 // Set up db
 const db = mongoose.connection
 
@@ -32,9 +34,12 @@ app.set('view engine', 'hbs')
 // Use static file
 app.use(express.static('public'))
 
-// Set up the route and response body 
+// Set up the root route and render through template engine 
 app.get('/', (req, res) => {
-  res.render('index', {restaurant: restaurantList.results})
+  Restaurant.find()
+    .lean()
+    .then(restaurant => res.render('index', {restaurant}))
+    .catch(error => console.error(error))
 })
 // Set up /restaurants/params and response body
 app.get('/restaurants/:id', (req, res) => {
