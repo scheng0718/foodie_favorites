@@ -18,7 +18,7 @@
 
 {{!-- Create a new restaurant --}}
 <div class="container add-button mt-5 d-flex justify-content-center">
-  <a class="btn btn-outline-success" href="/restaurant/new" role="button">+ 新增餐廳</a>
+  <a class="btn btn-outline-success" href="/restaurant/new" role="button">+ New</a>
 </div>
 
 <!-- restaurant list -->
@@ -49,6 +49,9 @@
             <div class="d-flex justify-content-end">
               <a class="ms-3 mb-5 btn btn-outline-secondary" href="/restaurant/{{ this._id }}/edit" role="button">Edit</a>
               <a class="ms-3 mb-5 btn btn-outline-secondary" href="/restaurant/{{ this._id }}" role="button">Detail</a>
+              <form action="/restaurant/{{ this._id }}/delete" method="POST" style="display: inline;">
+                <button class="ms-3 mb-5 btn btn-outline-danger" type="submit">Delete</button>
+              </form>
             </div>
             
           </div>  

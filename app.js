@@ -108,6 +108,13 @@ app.post('/restaurant/:id/edit', (req, res) => {
     .then(() => res.redirect(`/restaurant/${id}`))
     .catch(error => console.log(error)) 
 })
+app.post('/restaurant/:id/delete', (req, res) => {
+  const id = req.params.id
+  return Restaurant.findById(id)
+    .then(restaurant => restaurant.remove())
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
 // Set up /search route
 app.get('/search', (req, res) => {
   if (!req.query.keyword) {
