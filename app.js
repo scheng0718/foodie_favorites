@@ -33,13 +33,30 @@ app.engine('hbs', exphbs({defaultLayout: 'main', extname: '.hbs'}))
 app.set('view engine', 'hbs')
 // Use static file
 app.use(express.static('public'))
-
+app.use(express.urlencoded({ extended: true }))
 // Set up the root route and render through template engine 
 app.get('/', (req, res) => {
   Restaurant.find()
     .lean()
     .then(restaurant => res.render('index', {restaurant}))
     .catch(error => console.error(error))
+})
+app.get('/restaurant/new', (req, res) => {
+  return res.render('new')
+})
+app.post('/restaurant/new', (req, res) => {
+  const name = req.body.name
+  const name_en = req.body.name_en  
+  const category = req.body.category  
+  const image = req.body.image  
+  const location = req.body.location  
+  const phone = req.body.phone  
+  const google_map = req.body.google_map  
+  const rating = req.body.rating  
+  const description = req.body.description  
+  return Restaurant.create({name, name_en, category, image, location, phone, google_map, rating, description})
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
 })
 // Set up /restaurants/params and response body
 app.get('/restaurants/:id', (req, res) => {
