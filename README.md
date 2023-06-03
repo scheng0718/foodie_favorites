@@ -22,7 +22,7 @@ Additionally, the website features a search functionality that allows users to f
 
 To run the project, make sure you have Node.js installed on your system. Then, follow these steps:
 
-1. Make sure you have Node.js installed on your system.
+1. Make sure you have Node.js and npm installed on your system.
 2. Clone the repository:
 ```
 git clone https://github.com/scheng0718/foodie_favorites.git
