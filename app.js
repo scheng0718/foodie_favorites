@@ -123,8 +123,17 @@ app.get('/search', (req, res) => {
   // console.log('req.query.keyword', req.query.keyword)
   // Use trim() and regex to remove the spaces.
   const keyword = req.query.keyword.trim().replace(/\s/g, '')
-  const restaurant = restaurantList.results.filter(restaurant => restaurant.name.toLowerCase().includes(keyword.toLowerCase()) || restaurant.category.toLowerCase().includes(keyword.toLowerCase()))
-  res.render('index', {restaurant, keyword})
+  Restaurant.find({
+    $or: [
+      { name: { $regex: keyword, $options: 'i' } }, // 使用正則表達式進行模糊搜尋，不區分大小寫
+      { category: { $regex: keyword, $options: 'i' } }
+    ]
+  })
+    .lean()
+    .then(restaurant => res.render('index', {restaurant, keyword}))
+    .catch(error => console.log(error))
+  // const restaurant = Restaurant.filter(restaurant => restaurant.name.toLowerCase().includes(keyword.toLowerCase()) || restaurant.category.toLowerCase().includes(keyword.toLowerCase()))
+  // res.render('index', {restaurant, keyword})
 })
 
 // The server is listening and running at the http://localhost:3000
