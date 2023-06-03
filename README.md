@@ -24,23 +24,42 @@ To run the project, make sure you have Node.js installed on your system. Then, f
 
 1. Make sure you have Node.js installed on your system.
 2. Clone the repository:
-```git clone https://github.com/scheng0718/foodie_favorites.git```
+```
+git clone https://github.com/scheng0718/foodie_favorites.git
+```
 3. Navigate to the project directory: 
-```cd foodie_favorites```
+```
+cd foodie_favorites
+```
 4. Install the express: 
-```npm install express@4.17.1```
+```
+npm install express@4.17.1
+```
 5. Install the express-handlebars:
-```npm install express-handlebars@3.0.0```
+```
+npm install express-handlebars@3.0.0
+```
 6. Install the mongoose: 
-```npm install mongoose@5.9.7```
+```
+npm install mongoose@5.9.7
+```
 7. Install dotenv 16.1.3: 
-```npm install dotenv -D```
+```
+npm install dotenv -D
+```
 8. Start the server: 
-```npm run dev```
+```
+npm run dev
+```
 9. Open your web browser and visit: 
-```http://localhost:3000```
+```
+http://localhost:3000
+```
 10.Load the seed data into the database: 
-```npm run seed```
+```
+npm run seed
+```
+
 ## Developer
 
 This project was developed by Evan Cheng.
