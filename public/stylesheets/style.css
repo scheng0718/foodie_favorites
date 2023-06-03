@@ -99,3 +99,7 @@ header {
   }
 
 }
+
+.card mb-3 {
+  border: 20px solid red;
+}

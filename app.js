@@ -59,12 +59,16 @@ app.post('/restaurant/new', (req, res) => {
     .catch(error => console.log(error))
 })
 // Set up /restaurants/params and response body
-app.get('/restaurants/:id', (req, res) => {
+app.get('/restaurant/:id', (req, res) => {
   // console.log('req.params.id', req.params.id)
   // 使用到解構賦值的寫法，從 req.params 中提取名為 id的屬性再賦值
   const {id} = req.params
-  const restaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === id)
-  res.render('show', {restaurant})
+  // const restaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === id)
+  // res.render('show', {restaurant})
+  return Restaurant.findById(id)
+    .lean()
+    .then((restaurant) => res.render('show', {restaurant}))
+    .catch(error => console.log(error))  
 })
 // Set up /search route
 app.get('/search', (req, res) => {

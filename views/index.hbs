@@ -28,26 +28,28 @@
       {{#if restaurant}}
       <div class="row row-cols-sm-3">
         {{#each restaurant}}
-          <a href="/restaurants/{{this.id}}" class="text-secondary">
-            <div class="card mb-3">
-              <img class="card-img-top" src={{this.image}} alt={{this.name}}>
-              <div class="card-body p-3">
-                <h6 class="card-title mb-1">{{this.name}}</h6>
-          
-                <div class="restaurant-category mb-1">
-                  <i class="fas fa-utensils pr-2"></i> {{this.category}}
+          <div>
+            <a href="/restaurant/{{this._id}}" class="text-secondary">
+              <div class="card mb-3">
+                <img class="card-img-top" src={{this.image}} alt={{this.name}}>
+                <div class="card-body p-3">
+                  <h6 class="card-title mb-1">{{this.name}}</h6>
+            
+                  <div class="restaurant-category mb-1">
+                    <i class="fas fa-utensils pr-2"></i> {{this.category}}
+                  </div>
+            
+                  <span class="badge badge-pill badge-danger font-weight-normal">
+                    {{this.rating}}
+                    <i class="fas fa-star fa-xs"></i>
+                  </span>
                 </div>
-          
-                <span class="badge badge-pill badge-danger font-weight-normal">
-                  {{this.rating}}
-                  <i class="fas fa-star fa-xs"></i>
-                </span>
-          
               </div>
-            </div>
-          </a>
+            </a>
+            <a href="/restaurant/{{ this._id }}" class="mb-5 d-flex justify-content-end">detail</a>
+          </div>  
         {{/each}}
-      </div>
+      </div>     
       {{else}}
         <h1> The restaurant is not in the list. Try to find another one! </h1>
       {{/if}} 
