@@ -2,30 +2,12 @@
 const express = require('express')
 // Load express-handlebars
 const exphbs = require('express-handlebars')
-// Load mongoose
-const mongoose = require('mongoose')
+
 // Load method override
 const methodOverride = require('method-override')
 const routes = require('./routes')
-
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config()
-}
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true, 
-  useUnifiedTopology: true 
-})
-// Set up db
-const db = mongoose.connection
-
-db.on('error', () => {
-  console.log('mongodb error!')
-})
-
-db.once('open', () => {
-  console.log('mongodb connected!')
-})
-
+// mongoose 只需要被執行，不需要接合任何參數
+require('./config/mongoose')
 // Create an instance to use express
 const app = express()
 // Define server-related variables
