@@ -6,7 +6,7 @@
         <div class="card-body">
           <h5 class="card-title"> 餐廳資訊 </h5>
           <hr>
-          <form method="POST" action="/restaurant/{{ restaurant._id }}/edit" id="form">
+          <form method="POST" action="/restaurants/{{ restaurant._id }}?_method=PUT" id="form">
             <div class="row g-2 mb-3">
               <label for="name" class="col-md-4 col-form-label">
                 中文店名 <i class="fa-solid fa-utensils"></i>

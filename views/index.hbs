@@ -14,11 +14,11 @@
           </div>
         </form>
 
-        <form action="/">
-          <div class="form-group">
+        <form action="/filter?sorting=asc" method="GET">
+          {{!-- <div class="form-group"> --}}
             <h4 class="mb-2">Sort by:</h4>
             <div class="input-group mb-3">
-              {{!-- <label class="input-group-text" for="sorting" style="font-size: 1.5rem;  font-weight:bold"></label> --}}
+              <label class="sorting" for="sorting"></label>
               <select class="form-select" id="sorting">
                 <option selected> Sort...</option>
                 <option value="asc">A -> Z</option>
@@ -27,7 +27,7 @@
                 <option value="location">Location</option>
               </select>
             </div>
-          </div>
+          {{!-- </div> --}}
         </form>
       </div>
     </div>
@@ -42,11 +42,12 @@
       <div class="row row-cols-sm-3">
         {{#each restaurant}}
           <div>
-            <a href="/restaurant/{{this._id}}" class="text-secondary">
+            <a href="/restaurants/{{this._id}}" class="text-secondary">
               <div class="card mb-3">
                 <img class="card-img-top" src={{this.image}} alt={{this.name}}>
                 <div class="card-body p-3">
                   <h6 class="card-title mb-1">{{this.name}}</h6>
+                  <h6 class="card-title mb-1">{{this.name_en}}</h6>
             
                   <div class="restaurant-category mb-1">
                     <i class="fas fa-utensils pr-2"></i> {{this.category}}
@@ -60,9 +61,9 @@
               </div>
             </a>
             <div class="d-flex justify-content-end">
-              <a class="ms-3 mb-5 btn btn-outline-secondary" href="/restaurant/{{ this._id }}/edit" role="button">Edit</a>
-              <a class="ms-3 mb-5 btn btn-outline-secondary" href="/restaurant/{{ this._id }}" role="button">Detail</a>
-              <form action="/restaurant/{{ this._id }}/delete" method="POST" style="display: inline;">
+              <a class="ms-3 mb-5 btn btn-outline-secondary" href="/restaurants/{{ this._id }}/edit" role="button">Edit</a>
+              <a class="ms-3 mb-5 btn btn-outline-secondary" href="/restaurants/{{ this._id }}" role="button">Detail</a>
+              <form action="/restaurants/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
                 <button class="ms-3 mb-5 btn btn-outline-danger" type="submit">Delete</button>
               </form>
             </div>
