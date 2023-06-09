@@ -14,6 +14,8 @@ router.get('/:sort', (req, res) => {
     sortQuery = {category: 1}
   } else if (sortingOption === 'location') {
     sortQuery = {location: 1}
+  } else if (sortingOption === 'rating') {
+    sortQuery = {rating: -1}
   }
   Restaurant
     .find()
