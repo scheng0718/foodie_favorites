@@ -1,38 +1,33 @@
 <!-- search bar -->
 <div class="container search-bar">
-  <div class="row">
-    <div class="col-md-10 col-12 mx-auto search-bar-outer">
-      <div class="row row-cols-sm-3 search-bar-inner d-flex justify-content-between">
-        <form action="/search">
-          <h4 class="mb-2">Search:</h4>
-          <div class="input-group">
+  <div class="search-bar-outer">
+    <div class="search-bar-inner">
+      <h4 class="mb-2"> Search </h4>
+      <form action="/search">
+        <div class="d-flex flex-column flex-sm-row align-items-sm-center gap-2">
+          <div class="input-group mb-2 mb-sm-0 mr-sm-2">
             <input type="text" name="keyword" class="form-control" placeholder="Restaurant or Category"
-              aria-label="Restaurant Name..." value="{{keyword}}" aria-describedby="search-button">
-            <div class="input-group-append">
-              <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
-            </div>
+              aria-label="Restaurant Name..." aria-describedby="button-addon2" value="{{keyword}}" />
+            <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
           </div>
-        </form>
-
-        <form action="/filter?sorting=asc" method="GET">
-          {{!-- <div class="form-group"> --}}
-            <h4 class="mb-2">Sort by:</h4>
-            <div class="input-group mb-3">
-              <label class="sorting" for="sorting"></label>
-              <select class="form-select" id="sorting">
-                <option selected> Sort...</option>
-                <option value="asc">A -> Z</option>
-                <option value="desc">Z -> A</option>
-                <option value="category">Category</option>
-                <option value="location">Location</option>
-              </select>
-            </div>
-          {{!-- </div> --}}
-        </form>
-      </div>
+          <div class="dropdown">
+            <button class="btn btn-major ml-1 dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown"
+              aria-expanded="false">
+               Sort By
+            </button>
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+              <li><a class="dropdown-item" href="/sort/nameAsc">A to Z</a></li>
+              <li><a class="dropdown-item" href="/sort/nameDesc">Z to A</a></li>
+              <li><a class="dropdown-item" href="/sort/category">Category</a></li>
+              <li><a class="dropdown-item" href="/sort/location">Location</a></li>
+            </ul>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 </div>
+
 
 <!-- restaurant list -->
 <div class="container mt-5">
