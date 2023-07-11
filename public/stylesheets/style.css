@@ -103,3 +103,20 @@ header {
 .card mb-3 {
   border: 20px solid red;
 }
+
+.line {
+  width: 48%;
+  border-bottom: 1px solid #000;
+  position: relative;
+  float: left;
+  top: 10px;
+  border-bottom: 1px solid rgb(211, 211, 211);
+}
+
+.text {
+  width: 4%;
+  text-align: center;
+  position: relative;
+  float: left;
+  color: gray;
+}
