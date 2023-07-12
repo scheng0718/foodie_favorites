@@ -4,7 +4,7 @@ const User = require('../models/user')
 
 passport.use(new LocalStrategy({
   usernameField: 'email'
-},(username, password, done) => {
+},(email, password, done) => {
   User.findOne({ email })
     .then(user => {
       if (!user) {
