@@ -12,4 +12,7 @@ router.get('/signup', (req, res) => {
   res.render('signup')
 })
 
+router.post('/signup', (req, res) => {
+})
+
 module.exports = router
