@@ -4,6 +4,9 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 // Load method override
 const methodOverride = require('method-override')
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 const session = require('express-session')
 const passport = require('./config/passport')
 const flash = require('connect-flash')
@@ -13,13 +16,13 @@ require('./config/mongoose')
 // Create an instance to use express
 const app = express()
 // Define server-related variables
-const port = 3000
+const port = process.env.PORT
 // Use template engine
 app.engine('hbs', exphbs({defaultLayout: 'main', extname: '.hbs'}))
 // Set view engine as handlebars
 app.set('view engine', 'hbs')
 app.use(session({
-  secret: 'ThisIsMySecret',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }))
