@@ -29,6 +29,12 @@ app.use(passport.session())
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.isAuthenticated()
+  res.locals.user = req.user
+  // console.log(res)
+  next()
+})
 app.use(routes)
 // The server is listening and running at the http://localhost:3000
 app.listen(port, () => {
