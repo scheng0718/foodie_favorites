@@ -5,6 +5,7 @@ const Restaurant = require('../../models/restaurant')
 
 router.get('/:sort', (req, res) => {
   const sortingOption = req.params.sort
+  const userId = req.user._id
   let sortQuery = {}
   if (sortingOption === 'nameAsc') {
     sortQuery = {name_en: 1}
@@ -18,7 +19,7 @@ router.get('/:sort', (req, res) => {
     sortQuery = {rating: -1}
   }
   Restaurant
-    .find()
+    .find({ userId })
     .lean()
     .sort(sortQuery)
     .then(restaurant => res.render('index', {restaurant}))

@@ -11,12 +11,8 @@ router.get('/', (req, res) => {
   // console.log('req.query.keyword', req.query.keyword)
   // Use trim() and regex to remove the spaces.
   const keyword = req.query.keyword.trim().replace(/\s/g, '')
-  Restaurant.find({
-    // $or: [
-    //   { name: { $regex: keyword, $options: 'i' } }, // 使用正則表達式進行模糊搜尋，不區分大小寫
-    //   { category: { $regex: keyword, $options: 'i' } }
-    // ]
-  })
+  const userId = req.user._id
+  Restaurant.find({ userId })
     .lean()
     .then(restaurant => {
       const filteredRestaurant = restaurant.filter(data => data.name.toLowerCase().includes(keyword.toLowerCase()) || data.name_en.toLowerCase().includes(keyword.toLowerCase()) || data.category.toLowerCase().includes(keyword.toLowerCase()))
