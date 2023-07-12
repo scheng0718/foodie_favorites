@@ -1,6 +1,7 @@
 const passport = require('passport')
 const LocalStrategy = require('passport-local')
 const User = require('../models/user')
+const bcrypt = require('bcryptjs')
 
 passport.use(new LocalStrategy({
   usernameField: 'email',
@@ -13,11 +14,14 @@ passport.use(new LocalStrategy({
         req.flash('emailInput', req.body.email)
         return done(null, false, req.flash('warning_msg', 'The email is not registered yet.'))
       }
-      if (user.password !== password) {
-        req.flash('emailInput', req.body.email)
-        return done(null, false, req.flash('warning_msg', 'Incorrect email or password.'))
-      }
-      return done(null, user)
+      bcrypt.compare(password, user.password)
+        .then(isMatched => {
+          if (!isMatched) {
+            req.flash('emailInput', req.body.email)
+            return done(null, false, req.flash('warning_msg', 'Incorrect email or password.'))
+          }
+          return done(null, user)
+        })
     })
     .catch(error => console.log(error))
 }))
