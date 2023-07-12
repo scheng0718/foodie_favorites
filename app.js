@@ -5,6 +5,7 @@ const exphbs = require('express-handlebars')
 // Load method override
 const methodOverride = require('method-override')
 const session = require('express-session')
+const passport = require('./config/passport')
 const routes = require('./routes')
 // mongoose 只需要被執行，不需要接合任何參數
 require('./config/mongoose')
@@ -21,6 +22,9 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }))
+// initialize and use passport
+app.use(passport.initialize())
+app.use(passport.session())
 // Use static file
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
