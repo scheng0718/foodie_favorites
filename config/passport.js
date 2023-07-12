@@ -3,15 +3,19 @@ const LocalStrategy = require('passport-local')
 const User = require('../models/user')
 
 passport.use(new LocalStrategy({
-  usernameField: 'email'
-},(email, password, done) => {
+  usernameField: 'email',
+  passReqToCallback: true,
+},(req, email, password, done) => {
   User.findOne({ email })
     .then(user => {
       if (!user) {
-        return done(null, false, { message: 'The email is not registered yet.'})
+        // console.log(req.body.email)
+        req.flash('emailInput', req.body.email)
+        return done(null, false, req.flash('warning_msg', 'The email is not registered yet.'))
       }
       if (user.password !== password) {
-        return done(null, false, { message: 'Incorrect email or password.'})
+        req.flash('emailInput', req.body.email)
+        return done(null, false, req.flash('warning_msg', 'Incorrect email or password.'))
       }
       return done(null, user)
     })
