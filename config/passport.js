@@ -113,6 +113,6 @@ passport.deserializeUser((id, done) => {
   User.findById(id)
     .lean()
     .then(user => done(null, user))
-    .catch(error => console.log(error))
+    .catch(error => done(error, null))
 })
 module.exports = passport
