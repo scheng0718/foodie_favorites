@@ -24,7 +24,10 @@ router.get('/:id', (req, res) => {
   // res.render('show', {restaurant})
   return Restaurant.findOne({ _id, userId })
     .lean()
-    .then((restaurant) => res.render('show', {restaurant}))
+    .then((restaurant) => res.render('show', {
+      restaurant,
+      GOOGLE_MAPS_KEY: process.env.GOOGLE_MAPS_KEY
+    }))
     .catch(error => console.log(error))  
 })
 // 取得編輯餐廳頁面
