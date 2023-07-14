@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
     .lean()
     .then(restaurant => {
       const filteredRestaurant = restaurant.filter(data => data.name.toLowerCase().includes(keyword.toLowerCase()) || data.name_en.toLowerCase().includes(keyword.toLowerCase()) || data.category.toLowerCase().includes(keyword.toLowerCase()))
-
+      
       res.render('index', {restaurant: filteredRestaurant, keyword})
     })
     .catch(error => console.log(error))
