@@ -54,7 +54,10 @@ router.post('/signup', (req, res) => {
             email,
             password: hash
           })
-            .then(() => res.redirect('/'))
+            .then(() => {
+              req.flash('success_msg', 'Your account is created. Please sign in.')
+              res.redirect('/users/login')
+            })
             .catch(error => console.log(error))
         })
     })
