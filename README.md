@@ -96,6 +96,8 @@ PORT=3000
   - ``App ID`` and ``App secret`` can be used in your .env file. 
   - Click ``Products`` , then ``Configure`` and ``Setting`` 
   - Add your ``Valid OAuth Redirect URIs``
+  - Click ``Use cases``, then in Authentication and account creation click ``Edit``
+  - Grant the permission for email. Click ``Add``, Will see ``Ready for testing``
 
 - Get GITHUB_ID and GITHUB_SECRET at https://github.com/settings/developers
   ![](./screenshots/github_login.png)
